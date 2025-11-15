@@ -10,10 +10,19 @@ import Speaker from "../components/Speaker";
 import TV from "../components/TV";
 import Watch from "../components/Watch";
 import WomanWear from "../components/WomanWear";
+import { getProducts } from "../data/data";
+
 
 const Product = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+      getProducts(setProducts)
+    },[]);
+
   return (
-    <div>
+    <>
+      {products ? <div>
       <Mobile />
       <Computer />
       <Furniture />
@@ -25,7 +34,10 @@ const Product = () => {
       <Watch />
       <WomanWear />
       <Ac />
-    </div>
+    </div> : <><span>Products are loading....</span></> }
+      
+    </>
+    
   );
 };
 
