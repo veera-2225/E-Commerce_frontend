@@ -7,7 +7,7 @@ const Navbar = () => {
     <>
     <div className="navSection">
       <div className="title">
-        <h2>E-Mart</h2>
+        <Link to="/"><h2>E-Mart</h2></Link>
       </div>
       <div className="search">
         <input type="text" placeholder="search..." />
@@ -19,7 +19,7 @@ const Navbar = () => {
     </div>
     
 
-    {/* <div className="subMenu">
+    <div className="subMenu">
       <ul>
         <Link to="/mobile"><li>Mobiles</li></Link>
         <Link to="/ac"><li>Ac's</li></Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link to="/menswear"><li>Men's</li></Link>
         <Link to="/woman"><li>Women's</li></Link>
       </ul>
-    </div> */}
+    </div>
     </>
   );
 };

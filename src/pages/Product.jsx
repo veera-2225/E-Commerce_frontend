@@ -11,33 +11,61 @@ import TV from "../components/TV";
 import Watch from "../components/Watch";
 import WomanWear from "../components/WomanWear";
 import { getProducts } from "../data/data";
-
+import { api_url } from "../data/api_url";
+import axios from "axios";
+import { ThreeCircles } from "react-loader-spinner";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-      getProducts(setProducts)
-    },[]);
+  useEffect(() => {
+    function getProducts() {
+      axios
+        .get(`${api_url}/getProducts`)
+        .then((res) => {
+          console.log(res.data.response);
+          setProducts(res.data.response);
+          setLoading(false);
+        })
+        .catch((error) => {
+          alert("Something went wrong");
+          setLoading(true);
+        });
+    }
+    getProducts();
+  }, []);
 
   return (
     <>
-      {products ? <div>
-      <Mobile />
-      <Computer />
-      <Furniture />
-      <Kitchen />
-      <Menswear />
-      <Refrigerator />
-      <Speaker />
-      <TV />
-      <Watch />
-      <WomanWear />
-      <Ac />
-    </div> : <><span>Products are loading....</span></> }
-      
+      {loading ? (
+        <div className="spinner">
+          <ThreeCircles
+            visible={true}
+            height="100"
+            width="100"
+            color="#4fa94d"
+            ariaLabel="three-circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      ) : (
+        <div>
+          <Mobile products={products} />
+          <Computer products={products} />
+          <Furniture products={products} />
+          <Kitchen products={products} />
+          <Menswear products={products} />
+          <Refrigerator products={products} />
+          <Speaker products={products} />
+          <TV products={products} />
+          <Watch products={products} />
+          <WomanWear products={products} />
+          <Ac products={products} />
+        </div>
+      )}
     </>
-    
   );
 };
 

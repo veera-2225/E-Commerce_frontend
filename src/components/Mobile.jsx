@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../data/data";
 import { api_url } from "../data/api_url";
 
-
-function Mobile() {
-  const [products, setProducts] = useState([]);
-
+function Mobile({ products }) {
   const mobile = products
     .filter((item) => item.product.includes("Mobile"))
     .slice(0, 5);
 
-  useEffect(()=>{
-    getProducts(setProducts)
-  },[]);
-
-  console.log(products)
-
   return (
     <>
-      <h2>Mobile</h2>
+      <h2>{mobile[0].product}</h2>
       <div className="proSection">
         {mobile.map((item) => {
           return (

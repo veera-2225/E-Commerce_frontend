@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../data/data";
 import { api_url } from "../data/api_url";
 
-function Ac() {
-  const [products, setProducts] = useState([]);
-
+function Ac({products}) {
   const product = products
     .filter((item) => item.category.includes("Electronics_Ac"))
     .slice(0, 5);
-
-  useEffect(() => {
-    getProducts(setProducts);
-  }, []);
 
   return (
     <>

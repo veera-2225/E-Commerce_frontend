@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import { Routes, Route } from "react-router-dom";
@@ -15,12 +15,37 @@ import WatchPage from "./pages2/WatchPage";
 import WomanWearPage from "./pages2/WomanWearPage";
 import ProductPage from "./singles/ProductPage";
 
+import axios from "axios";
+import { api_url } from "./data/api_url";
+
+
 function App() {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    function getProducts() {
+      axios
+        .get(`${api_url}/getProducts`)
+        .then((res) => {
+          console.log(res.data.response);
+          setProducts(res.data.response);
+          setLoading(false);
+        })
+        .catch((error) => {
+          alert("Something went wrong");
+          setLoading(true);
+        });
+    }
+    getProducts();
+  }, []);
+
+
   return (
     <div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/mobile" element={<MobilesPage />} />
+        <Route path="/mobile" element={<MobilesPage  products={products} loading={loading} />} />
         <Route path="/ac" element={<AcPage />} />
         <Route path="/computer" element={<ComputerPage />} />
         <Route path="/furniture" element={<FurniturePage />} />

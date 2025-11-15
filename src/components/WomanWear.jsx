@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../data/data";
+// import { useEffect, useState } from "react";
+// import { getProducts } from "../data/data";
 import { api_url } from "../data/api_url";
 
-function WomanWear() {
-  const [products, setProducts] = useState([]);
+function WomanWear({products}) {
+  // const [products, setProducts] = useState([]);
 
   const product = products
     .filter((item) => item.product.includes("Woman Wear"))
     .slice(0, 5);
 
-  useEffect(() => {
+  /* useEffect(() => {
     getProducts(setProducts);
-  }, []);
+  }, []); */
 
   return (
     <>
