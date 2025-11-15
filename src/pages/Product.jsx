@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Ac from "../components/Ac";
 import Mobile from "../components/Mobile";
 import Computer from "../components/Compute";
