@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { api_url } from "../data/api_url";
 import { ThreeCircles } from "react-loader-spinner";
+import StarRating from "../pages/StarRating";
 
 function MobilesPage({ products, loading }) {
   const [selected, setSelected] = useState([]);
@@ -63,23 +64,30 @@ function MobilesPage({ products, loading }) {
           </div>
         ) : (
           <div className="ind-section">
-            {filteredMobiles.map((item) => {
-              return (
-                <Link to={`/mobilePage/${item._id}`}>
-                  <div key={`${item._id}`} className="page-div">
-                    <img
-                      src={`${api_url}/uploads/${item.image}`}
-                      alt={`${item.product}`}
-                      className="page-img"
-                    />
-                    <div>
-                      {item.company}, {item.model}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+        {filteredMobiles.map((item) => {
+          return (
+            <div key={`${item._id}`} className="product">
+              <div className="image">
+                <img
+                  src={`${api_url}/uploads/${item.image}`}
+                  alt={`${item.product}`}
+                />
+              </div>
+              <div className="namePrice">
+                <div><h3>{item.company.trim()} </h3><h4>{""}-{item.model.trim()}</h4></div>
+                <span>₹ {item.price * 10}</span>
+              </div>
+              <p>{item.description}</p>
+              <div className="stars">
+               <StarRating rating={item.rating}/>
+              </div>
+              <div className="buy">
+                <button>Buy Now</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
         )}
       </div>
     </>

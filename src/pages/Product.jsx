@@ -56,13 +56,16 @@ const Product = () => {
           <Computer products={products} />
           <Furniture products={products} />
           <Kitchen products={products} />
+          {/* 
+          
+          
           <Menswear products={products} />
           <Refrigerator products={products} />
           <Speaker products={products} />
           <TV products={products} />
           <Watch products={products} />
           <WomanWear products={products} />
-          <Ac products={products} />
+          <Ac products={products} /> */}
         </div>
       )}
     </>
